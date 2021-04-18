@@ -17,7 +17,7 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>User</em>
+              <em>{{user.email}}</em>
             </template>
             <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
             <b-dropdown-item href="#" @click.prevent="salir()" >Salir</b-dropdown-item>
@@ -30,8 +30,11 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions,mapState} from 'vuex';
 export default {
+  computed: {
+    ...mapState('auth',['user'])
+  },
     methods: {
        ...mapActions('auth',['logout']),
         currentPath(url) {

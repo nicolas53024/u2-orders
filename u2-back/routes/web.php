@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    dd(  Carbon::now()->addYear(1)->format('d-m-Y'));
+    $or=Order::where('id',1)->with('products')->first();
+    dd( $or->products );
     // return view('welcome');
 });

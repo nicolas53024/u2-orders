@@ -7,7 +7,11 @@ const state = {
     user: null,
 };
 
-const getters = {};
+const getters = {
+    autenticado(state) {
+        return state.isAuthenticated
+    }
+};
 
 const mutations = {
     SET_USER(state, user) {
@@ -25,12 +29,19 @@ const actions = {
         return dispatch("getUser");
     },
     async logout({ dispatch }) {
+        localStorage.removeItem('usuario') 
         await axios.get('/sanctum/csrf-cookie');
         await axios.post('/logout');
-        return dispatch("getUser");
+        
     },
     getUser({ commit }) {
+        if (localStorage.getItem('usuario')) {
+            commit('SET_USER', JSON.parse(localStorage.getItem('usuario')));
+            commit('SET_AUTHENTICATED', true);
+            return true;
+        }
         axios.get('api/user').then((res) => {
+            localStorage.setItem('usuario', JSON.stringify(res.data))
             commit('SET_USER', res.data);
             commit('SET_AUTHENTICATED', true);
         }).catch(() => {

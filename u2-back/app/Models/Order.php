@@ -16,4 +16,12 @@ class Order extends Model
     {
         return  Carbon::parse($value)->format('Y-m-d');
     }
+
+    public function products()
+    {
+       return $this->hasMany(order_product::class)
+                    ->join('products as pd','orders_products.product_id','pd.id')
+                    ->join('providers as pv','pd.provider_id','pv.id')
+                    ->select('orders_products.*','pd.*','pv.name as provider');
+    }
 }
