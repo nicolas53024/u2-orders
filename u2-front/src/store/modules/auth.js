@@ -30,7 +30,7 @@ const actions = {
         return dispatch("getUser");
     },
     getUser({ commit }) {
-        axios.get('api/test').then((res) => {
+        axios.get('api/user').then((res) => {
             commit('SET_USER', res.data);
             commit('SET_AUTHENTICATED', true);
         }).catch(() => {

@@ -9,6 +9,7 @@
         <b-navbar-nav>
           <router-link to="/" class="nav-link" :class="{'active':currentPath('/')}" >Home</router-link>
           <router-link to="/orders" class="nav-link" :class="{'active':currentPath('/orders')}">Ordenes</router-link>
+          <router-link to="/orders-by-date" class="nav-link" :class="{'active':currentPath('/orders-by-date')}">Buscar por fecha</router-link>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

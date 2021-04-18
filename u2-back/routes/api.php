@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\OrdersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:api')->get('/test', function (Request $request) {
-    return 'allowed';
+Route::get('/get-orders', [OrdersController::class, 'getOrders']);
+Route::get('/get-orders-by-date', [OrdersController::class, 'getOrdersByDate']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
 });

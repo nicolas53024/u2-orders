@@ -13,11 +13,13 @@ const routes = [
   {
     path: '/orders',
     name: 'Orders',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Orders.vue')
-  }
+  },
+  {
+    path: '/orders-by-date',
+    name: 'OrdersByDate',
+    component: () => import('../views/OrdersByDate.vue')
+  },
 ]
 
 const router = new VueRouter({

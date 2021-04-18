@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    dd( random_int(1,20));
+    dd(  Carbon::now()->addYear(1)->format('d-m-Y'));
     // return view('welcome');
 });
